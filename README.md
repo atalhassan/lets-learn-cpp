@@ -2,6 +2,8 @@
 Features that interests me in C++
 
 # Topics
+* Read Files
+* Pointers
 * Classes
 * Stack
 * Queue and Priority Queue
