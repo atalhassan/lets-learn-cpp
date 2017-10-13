@@ -1,8 +1,9 @@
 /*
  * @author Abdullah Alhassan
- * @version 1
+* @version 1
  * @file binarysearchtree.h
  */
+
 
 #ifndef BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_H
@@ -46,14 +47,9 @@ class BinarySearchTree: public BinaryTree
   //@usage: you do
   void Insert (const ItemType& newItem);
   void remove (const ItemType& theItem);
-  Node* FindMin() const;
-  Node* FindMax() const;
+  ItemType FindMin() const;
+  ItemType FindMax() const;
 
-
-
-
-
- 
  protected:  // recursive helper functions
   //@recursively searches (modeling on binary search) for a key
   //@pre: treeptr is assigned. newItem is assigned.
@@ -63,15 +59,26 @@ class BinarySearchTree: public BinaryTree
   //@usage: retrieveItem (mroot, key, rest);
   bool lookup (Node* treeptr, const ItemType& theItem) const;
 
-  //helper function
-  //@recursive function that inserts new item to the BST
-  //@pre: called from the Search function with newItem assigned
-  //@post: adds the newItem to the BST
+  //@recursive process starts from the root search for 
+  //          the correct place of the newItem
+  //@per treeptr is assigned, newItem is assigned
+  //@post add newItem to the tree in a proper place
   void insertItem (Node* &treeptr, const ItemType& newItem);
-
-   
-  Node* lookforMin(Node * treeptr) const;
-  Node* lookforMax(Node * treeptr) const;      
+  //@recursive process starts from the root search for the theItem
+  //@per treeptr is assigned, theItem is assigned
+  //@post remove theItem from the tree
+  void removeItem (Node* &treeptr, const ItemType& theItem);
+  
+  ItemType lookforMin(Node * treeptr) const;
+  ItemType lookforMax(Node * treeptr) const;      
+  //@remove the root node in three different situation
+  //@pre: not empty tree
+  //@post: remove the root node
+  void RemoveRootNode();
+  //@remove the match pointer, the parent will be assigned as well
+  //@pre: if the node is on the left then "Left" will be true, otherwise false
+  //@post: remove the match pointer
+  void RemoveMatch(Node* &parent, Node* &match, bool left);
 
 };
 #endif
